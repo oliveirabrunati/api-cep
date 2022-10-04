@@ -1,26 +1,22 @@
 import { useState } from "react";
 
-
 export const Cep = () => {
 
     const [campoPesquisa, setCampoPesquisa] = useState('');
     const [mensagem, setMensagem] = useState('');
-    const [cep, setCep] = useState([]);
-
-    fetch('https://viacep.com.br/ws/01001000/json/',{
-        method:'GET'
-    })
-        .then((response) => response.json())
-        .then((data) => setCep(data));
+    const [endereco, setEndereco] = useState([]);
 
     function pesquisar(){
         if(campoPesquisa === ''){
             setMensagem('Digite algo')
         }else{
-            setMensagem(campoPesquisa)
+
+            fetch( `https://viacep.com.br/ws/${campoPesquisa}/json/`) 
+            .then((response) => response.json())
+            .then((data) => setEndereco(data));
+
             setCampoPesquisa('')
         }
-
     }
 
     return(
@@ -29,18 +25,17 @@ export const Cep = () => {
             <input
                 type="text"
                 value={campoPesquisa}
-                placeholder='Digite alguma coisa'
+                placeholder='Digite um cep'
                 onChange={(event) => setCampoPesquisa(event.target.value)}
             />
             <button onClick={pesquisar}>Pesquisar</button>
-            <span>{mensagem}</span><br/>
             <div>
-                <p>{cep.cep}</p>
-                <p>{cep.logradouro}</p>
-                <p>{cep.complemento}</p>
-                <p>{cep.bairro}</p>
-                <p>{cep.localidade}</p>
-                <p>{cep.uf}</p>
+                <p>{mensagem}</p><br/>
+                <p>{endereco.cep}</p>
+                <p>{endereco.logradouro}</p>
+                <p>{endereco.complemento}</p>
+                <p>{endereco.bairro}</p>
+                <p>{endereco.localidade} - {endereco.uf}</p>
             </div>
         </div>
 
