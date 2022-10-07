@@ -1,4 +1,8 @@
 import { useState } from "react";
+import "antd/dist/antd.css";
+import { Input, Typography} from 'antd';
+
+
 
 export const Cep = () => {
 
@@ -6,9 +10,13 @@ export const Cep = () => {
     const [mensagem, setMensagem] = useState('');
     const [endereco, setEndereco] = useState([]);
 
-    function pesquisar(){
+
+    const {Title} = Typography;
+    const {Search} = Input;
+    
+    const busca = () => {
         if(campoPesquisa === ''){
-            setMensagem('Digite algo')
+            setMensagem('Digite um CEP')
         }else{
 
             fetch( `https://viacep.com.br/ws/${campoPesquisa}/json/`) 
@@ -16,26 +24,30 @@ export const Cep = () => {
             .then((data) => setEndereco(data));
 
             setCampoPesquisa('')
+            setMensagem('')
         }
     }
 
     return(
-        <div>
-            <h1>Cep</h1>
-            <input
-                type="text"
+        <div className="container">
+
+            <Title>Buscar Cep</Title>
+
+            <Search 
                 value={campoPesquisa}
-                placeholder='Digite um cep'
+                placeholder="Digite o CEP"
                 onChange={(event) => setCampoPesquisa(event.target.value)}
+                onSearch={busca}
+                enterButton 
             />
-            <button onClick={pesquisar}>Pesquisar</button>
-            <div>
+
+            <div className="endereco">
                 <p>{mensagem}</p><br/>
                 <p>{endereco.cep}</p>
                 <p>{endereco.logradouro}</p>
                 <p>{endereco.complemento}</p>
                 <p>{endereco.bairro}</p>
-                <p>{endereco.localidade} - {endereco.uf}</p>
+                <p>{endereco.localidade} {endereco.uf}</p>
             </div>
         </div>
 
