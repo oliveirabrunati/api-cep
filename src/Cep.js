@@ -25,11 +25,11 @@ export const Cep = () => {
   };
 
   return (
-    <Layout className="container">
+    <Layout>
       <Row justify="center" align="middle" className="content">
         <Col xs={20} md={18} lg={16}>
-          <div className="image">
-            <img src={Buscacep} alt="Logo" />
+          <div >
+            <img src={Buscacep} alt="Logo" className="image"/>
           </div>
           <Title level={3} className="description">
             Aqui você encontra o CEP de todo o Brasil
