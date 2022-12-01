@@ -1,8 +1,65 @@
 .content{
   height: 100vh;
+  background: #CFCEFF;
 }
 
 .alert{
   margin: 15px 0;
 }
 
+.image{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+  /* width: 90%; */
+}
+
+.address{
+  color: #00260E;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.description{
+  color: #00260E;
+  text-align: center;
+}
+
+#footer{
+  text-align: center;
+}
+
+h3.ant-typography{
+  color: #00260E !important;
+  margin-bottom: 30px !important;
+}
+
+.ant-btn-primary{
+ background: #194F97 !important;
+ border-color: #194F97 !important;
+}
+
+.ant-btn-primary:hover{
+  background: #1F6CD1 !important;
+  border-color: #1F6CD1 !important;
+}
+
+.ant-input{
+padding: 12px !important;
+font-size: 20px !important;
+background: #ECECFF !important;
+}
+
+.ant-input-affix-wrapper{
+  background: #ECECFF !important;
+}
+
+.ant-btn{
+  font-size: 24px !important;
+  width: 80px !important;
+}
+
+.ant-input-search-button{
+  height: 70px !important;
+}

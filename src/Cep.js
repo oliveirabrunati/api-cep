@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Buscacep from "./image/Buscacep.png";
 import "antd/dist/antd.css";
-import { Input, Layout, Col, Row, Typography, Form } from "antd";
+import { ConfigProvider, Input, Layout, Col, Row, Typography } from "antd";
 
 const { Title } = Typography;
 const { Search } = Input;
@@ -25,34 +26,48 @@ export const Cep = () => {
   };
 
   return (
-    <Layout className="container">
-      <Content>
-        <Row justify="center" align="middle" className="content">
-          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-            <Title level={2}>Busca CEP</Title>
-            
+    <ConfigProvider
+      theme={{
+        components: {
+          Button: {
+            colorPrimary: "#194F97",
+          },
+        },
+      }}
+    >
+      <Layout className="container">
+          <Row justify="center" align="middle" className="content">
+            <Col xs={20} md={18} lg={16}>
+                <div className="image">
+                    <img src={Buscacep} />
+                </div>
+              <Title level={3} className="description">
+                Aqui você encontra o CEP de todo o Brasil
+              </Title>
+
               <Search
-                value={campoPesquisa}
                 placeholder="Digite o CEP"
+                allowClear
+                enterButton
+                size="large"
+                value={campoPesquisa}
                 onChange={(event) => setCampoPesquisa(event.target.value)}
                 onSearch={busca}
-                enterButton
               />
 
-            <div className="endereco">
-              <p className="alert">{mensagem}</p>
-              <p>{endereco.cep}</p>
-              <p>{endereco.logradouro}</p>
-              <p>{endereco.complemento}</p>
-              <p>{endereco.bairro}</p>
-              <p>
-                {endereco.localidade} {endereco.uf}
-              </p>
-            </div>
-          </Col>
-        </Row>
-      </Content>
-      <Footer id="footer">Busca CEP ©2022 by Bruna Oliveira</Footer>
-    </Layout>
+              <div className="address">
+                <p className="alert">{mensagem}</p>
+                <p>{endereco.cep}</p>
+                <p>{endereco.logradouro}</p>
+                <p>{endereco.complemento}</p>
+                <p>{endereco.bairro}</p>
+                <p>
+                  {endereco.localidade} {endereco.uf}
+                </p>
+              </div>
+            </Col>
+          </Row>
+      </Layout>
+    </ConfigProvider>
   );
 };
