@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Buscacep from "./image/Buscacep.png";
 import "antd/dist/antd.css";
-import { ConfigProvider, Input, Layout, Col, Row, Typography } from "antd";
+import { Input, Layout, Col, Row, Typography } from "antd";
 
 const { Title } = Typography;
 const { Search } = Input;
-const { Header, Content, Footer } = Layout;
 
 export const Cep = () => {
   const [campoPesquisa, setCampoPesquisa] = useState("");
@@ -26,48 +25,38 @@ export const Cep = () => {
   };
 
   return (
-    <ConfigProvider
-      theme={{
-        components: {
-          Button: {
-            colorPrimary: "#194F97",
-          },
-        },
-      }}
-    >
-      <Layout className="container">
-          <Row justify="center" align="middle" className="content">
-            <Col xs={20} md={18} lg={16}>
-                <div className="image">
-                    <img src={Buscacep} />
-                </div>
-              <Title level={3} className="description">
-                Aqui você encontra o CEP de todo o Brasil
-              </Title>
+    <Layout className="container">
+      <Row justify="center" align="middle" className="content">
+        <Col xs={20} md={18} lg={16}>
+          <div className="image">
+            <img src={Buscacep} alt="Logo" />
+          </div>
+          <Title level={3} className="description">
+            Aqui você encontra o CEP de todo o Brasil
+          </Title>
 
-              <Search
-                placeholder="Digite o CEP"
-                allowClear
-                enterButton
-                size="large"
-                value={campoPesquisa}
-                onChange={(event) => setCampoPesquisa(event.target.value)}
-                onSearch={busca}
-              />
+          <Search
+            placeholder="Digite o CEP"
+            allowClear
+            enterButton
+            size="large"
+            value={campoPesquisa}
+            onChange={(event) => setCampoPesquisa(event.target.value)}
+            onSearch={busca}
+          />
 
-              <div className="address">
-                <p className="alert">{mensagem}</p>
-                <p>{endereco.cep}</p>
-                <p>{endereco.logradouro}</p>
-                <p>{endereco.complemento}</p>
-                <p>{endereco.bairro}</p>
-                <p>
-                  {endereco.localidade} {endereco.uf}
-                </p>
-              </div>
-            </Col>
-          </Row>
-      </Layout>
-    </ConfigProvider>
+          <div className="address">
+            <p className="alert">{mensagem}</p>
+            <p>{endereco.cep}</p>
+            <p>{endereco.logradouro}</p>
+            <p>{endereco.complemento}</p>
+            <p>{endereco.bairro}</p>
+            <p>
+              {endereco.localidade} {endereco.uf}
+            </p>
+          </div>
+        </Col>
+      </Row>
+    </Layout>
   );
 };
